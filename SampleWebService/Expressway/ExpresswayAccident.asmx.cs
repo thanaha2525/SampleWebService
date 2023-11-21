@@ -32,46 +32,6 @@ namespace SampleWebService.Expressway
 			return result;
 		}
 
-		[WebMethod]
-		public List<result> GetAccidentDataResult(){
-			var query = CallApi();
-			var result = query.result;
-			return result;
-		}
-
-		[WebMethod]
-		public List<result> GetAccidntDataByExpressway(string expressway)
-		{
-			var query = CallApi();
-			var result = query.result.Where(x => x.expw_step == expressway).ToList();
-			return result;
-		}
-
-		[WebMethod]
-		public result GetAccidentById(int id){
-			var query = CallApi();
-			var result = query.result.FirstOrDefault(x => x._id == id);
-			return result;
-		}
-
-		[WebMethod]
-		public List<string> GetNameExpressway(){
-			return ExpresswayName();
-		}
-		
-		[WebMethod]
-		public List<ExpresswayAccidentDohModel> GetExpresswayAccidentDoh(){
-			var query = CallApi();
-			var result = query.result.Select(x => new ExpresswayAccidentDohModel{
-				Date = x.accident_date,
-				Time = x.accident_time,
-				ExpresswayName = x.expw_step,
-				Weather = x.weather_state,
-				Cause = x.cause
-			}).ToList();
-			return result;
-		}
-
 
 		private List<string> ExpresswayName(){
 			return new List<string>{
